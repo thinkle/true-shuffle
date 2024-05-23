@@ -1,10 +1,8 @@
 export async function handler(event, context) {
   const clientId = process.env.SPOTIFY_CLIENT_ID;
-  const redirectUri = encodeURIComponent(
-    process.env.url
-      ? process.env.url.replace(/\/$/, "")
-      : "http://localhost:8888"
-  );
+  const redirectUri = process.env.url
+    ? process.env.url.replace(/\/$/, "")
+    : "http://localhost:8888";
   console.log("auth redirect url is ", redirectUri);
   const scopes = encodeURIComponent(
     "playlist-read-private playlist-modify-private"
