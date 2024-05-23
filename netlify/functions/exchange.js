@@ -1,4 +1,4 @@
-exports.handler = async function (event) {
+export async function handler(event) {
   if (event.httpMethod !== "POST") {
     console.log("Method was ", event.httpMethod);
     return { statusCode: 405, body: "Method Not Allowed" };
@@ -37,6 +37,8 @@ exports.handler = async function (event) {
     body: JSON.stringify({
       access_token: data.access_token,
       refresh_token: data.refresh_token,
+      expires_in: data.expires_in,
+      scope: data.scope,
     }),
   };
-};
+}

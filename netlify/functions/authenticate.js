@@ -1,4 +1,4 @@
-exports.handler = async function (event) {
+export async function handler(event, context) {
   const clientId = process.env.SPOTIFY_CLIENT_ID;
   const redirectUri = encodeURIComponent(
     process.env.url
@@ -21,4 +21,4 @@ exports.handler = async function (event) {
       message: "Redirecting to Spotify for authentication.",
     }),
   };
-};
+}
