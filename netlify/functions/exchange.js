@@ -7,9 +7,7 @@ export async function handler(event) {
   const authCode = body.code; // Get the authorization code from the request
   const clientId = process.env.SPOTIFY_CLIENT_ID;
   const clientSecret = process.env.SPOTIFY_CLIENT_SECRET;
-  const redirectUri = process.env.url
-    ? process.env.url.replace(/\/$/, "")
-    : "http://localhost:8888";
+  const redirectUri = process.env.URL;
   console.log("exchange uri is ", redirectUri);
   const base64credentials = Buffer.from(`${clientId}:${clientSecret}`).toString(
     "base64"
