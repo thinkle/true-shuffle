@@ -26,7 +26,7 @@ export async function handler(event) {
     body: new URLSearchParams({
       grant_type: "authorization_code",
       code: authCode,
-      redirect_uri: "http://localhost:8888",
+      redirect_uri: redirectUri,
     }),
   });
 
