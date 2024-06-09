@@ -3,7 +3,7 @@
   import { fetchWithAuth } from "./utils.js";
   import Playlist from "./Playlist.svelte";
   import { writable } from "svelte/store";
-  import { Button } from "contain-css-svelte";
+  import { Button, FormItem, Bar } from "contain-css-svelte";
   export let onPlaylistsFetched = (p) => console.log("fetched", p);
   export let onPlaylistShuffled = (p) => console.log("shuffled", p);
 
@@ -50,13 +50,45 @@
     }
     console.log("Fetched items", items);
   };
+  let filterText = "";
 </script>
 
 <Button on:click={getPlaylists}>Fetch All Playlists</Button>
-<div>
+
+<div style:--bar-bg="#fff7" style:--bar-fg="#333">
   {#if $playlists.length > 0}
-    {#each $playlists as playlist}
-      <Playlist {playlist} onShuffle={onPlaylistShuffled} />
-    {/each}
+    <Bar>
+      <div>
+        {#if filterText}
+          Showing {$playlists.filter((p) =>
+            p.name.toLowerCase().includes(filterText.toLowerCase())
+          ).length} of
+        {/if}
+        {$playlists.length} playlists
+      </div>
+      <FormItem>
+        <span slot="label">Search:</span>
+        <input bind:value={filterText} placeholder="Filter playlists" />
+      </FormItem>
+    </Bar>
+    <table
+      class="playlist-container"
+      style:--card-width="150px"
+      style:--card-header-height="3em"
+    >
+      {#each $playlists as playlist (playlist.id)}
+        {#if !filterText || playlist.name
+            .toLowerCase()
+            .includes(filterText.toLowerCase())}
+          <Playlist {playlist} onShuffle={onPlaylistShuffled} />
+        {/if}
+      {/each}
+    </table>
   {/if}
 </div>
+
+<style>
+  table {
+    margin: auto;
+  }
+</style>

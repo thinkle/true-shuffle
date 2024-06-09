@@ -24,8 +24,14 @@
       </div>
     </Bar>
     <TrueShuffle></TrueShuffle>
-    <Bar slot="footer"
-      >Foot
+    <Bar slot="footer">
+      <div>
+        By <a
+          style="color:var(--fg-color);"
+          href="https://tomhinkle.net"
+          target="_blank">Tom Hinkle</a
+        >
+      </div>
       <UserInfo />
     </Bar>
   </Page>
