@@ -16,8 +16,9 @@
   </Hero>
 {:else}
   <Page>
-    <Bar slot="header">
-      <div style="width:100px"></div>
+    <Bar slot="header" --bar-height="60px">
+      <img src="/icon.webp" />
+
       <h1>True Shuffle</h1>
       <div style="width:100px">
         <AuthButton />
@@ -38,4 +39,9 @@
 {/if}
 
 <style>
+  img {
+    object-fit: contain;
+    height: 100%;
+    border-radius: 50%;
+  }
 </style>
